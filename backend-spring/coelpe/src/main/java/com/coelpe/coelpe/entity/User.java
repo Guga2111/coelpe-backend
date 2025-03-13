@@ -9,7 +9,8 @@ import lombok.*;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
+//in h2 console cannot use 'user' for table name, because it's a reserved name ( so before switching to postgree we need to use 'users' )
+@Table(name = "users")
 public class User {
 
     @Id
