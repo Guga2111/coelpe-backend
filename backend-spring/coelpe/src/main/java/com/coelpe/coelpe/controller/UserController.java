@@ -1,7 +1,7 @@
 package com.coelpe.coelpe.controller;
 
 import com.coelpe.coelpe.entity.User;
-import com.coelpe.coelpe.service.UserService;
+import com.coelpe.coelpe.service.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    UserService userService;
+    UserServiceImpl userService;
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getUsers() {
