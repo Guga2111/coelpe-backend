@@ -22,8 +22,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUser(String username) {
-
+    public User getUser(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        return unwrapUser(user, 404L);
     }
 
     @Override
