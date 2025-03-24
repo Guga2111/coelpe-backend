@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/user")
@@ -18,7 +16,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<String> findById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.getUser(id).getEmail(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUser(id).getUsername(), HttpStatus.OK);
     }
 
     @PostMapping("/register")

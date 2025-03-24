@@ -4,6 +4,7 @@ import com.coelpe.coelpe.entity.User;
 import com.coelpe.coelpe.exception.UserNotFoundException;
 import com.coelpe.coelpe.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService{
 
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     UserRepository userRepository;
 
     @Override
@@ -22,8 +24,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUser(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
+    public User getUser(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
         return unwrapUser(user, 404L);
     }
 
@@ -34,6 +36,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
